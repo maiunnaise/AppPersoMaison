@@ -21,10 +21,10 @@ class Task
     private ?string $description = null;
 
     #[ORM\Column]
-    private ?\DateTimeImmutable $dueAt = null;
+    private ?\DateTime $dueAt = null;
 
     #[ORM\Column]
-    private ?\DateTimeImmutable $createdAt = null;
+    private ?\DateTime $createdAt = null;
 
     #[ORM\ManyToOne(inversedBy: 'tasks')]
     private ?User $user = null;
@@ -34,6 +34,9 @@ class Task
 
     #[ORM\ManyToOne(inversedBy: 'tasks')]
     private ?Session $session = null;
+
+    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
+    private ?\DateTimeInterface $finishedAt = null;
 
     public function getId(): ?int
     {
@@ -64,24 +67,24 @@ class Task
         return $this;
     }
 
-    public function getDueAt(): ?\DateTimeImmutable
+    public function getDueAt(): ?\DateTime
     {
         return $this->dueAt;
     }
 
-    public function setDueAt(\DateTimeImmutable $dueAt): static
+    public function setDueAt(\DateTime $dueAt): static
     {
         $this->dueAt = $dueAt;
 
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTimeImmutable
+    public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
 
-    public function setCreatedAt(\DateTimeImmutable $createdAt): static
+    public function setCreatedAt(\DateTime $createdAt): static
     {
         $this->createdAt = $createdAt;
 
@@ -120,6 +123,18 @@ class Task
     public function setSession(?Session $session): static
     {
         $this->session = $session;
+
+        return $this;
+    }
+
+    public function getFinishedAt(): ?\DateTimeInterface
+    {
+        return $this->finishedAt;
+    }
+
+    public function setFinishedAt(?\DateTimeInterface $finishedAt): static
+    {
+        $this->finishedAt = $finishedAt;
 
         return $this;
     }
