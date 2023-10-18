@@ -1,0 +1,11 @@
+{%extends "base.html.twig"%}
+
+{% block body %}
+    <div class="container m-auto">
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+            <button class="btn bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">{{ button_label|default('Save') }}</button>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}
+

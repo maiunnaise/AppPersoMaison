@@ -35,8 +35,8 @@ class Task
     #[ORM\ManyToOne(inversedBy: 'tasks')]
     private ?Session $session = null;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
-    private ?\DateTimeInterface $finishedAt = null;
+    #[ORM\Column]
+    private ?bool $isFinished = null;
 
     public function getId(): ?int
     {
@@ -127,14 +127,14 @@ class Task
         return $this;
     }
 
-    public function getFinishedAt(): ?\DateTimeInterface
+    public function isIsFinished(): ?bool
     {
-        return $this->finishedAt;
+        return $this->isFinished;
     }
 
-    public function setFinishedAt(?\DateTimeInterface $finishedAt): static
+    public function setIsFinished(bool $isFinished): static
     {
-        $this->finishedAt = $finishedAt;
+        $this->isFinished = $isFinished;
 
         return $this;
     }
